@@ -6,7 +6,7 @@ vim.g.tex_flavor = "latex"
 local opt = vim.opt
 local indent = 4
 
-opt.autowrite = true -- Enable auto write
+opt.autowrite = false -- Disable auto write
 opt.backup = false
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
@@ -26,7 +26,7 @@ opt.number = true -- Print line number
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.relativenumber = true -- Relative line numbers
-opt.scrolloff = 4 -- Lines of context
+opt.scrolloff = 5 -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = indent -- Size of an indent
