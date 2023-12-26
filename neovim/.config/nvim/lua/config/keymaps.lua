@@ -53,10 +53,14 @@ map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
 -- windows resize and split
-map("n", "<Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map("n", "<Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-map("n", "<Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-map("n", "<Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+-- map("n", "<Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+-- map("n", "<Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+-- map("n", "<Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+-- map("n", "<Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+vim.keymap.set("n", "<Up>", require("smart-splits").resize_up)
+vim.keymap.set("n", "<Down>", require("smart-splits").resize_down)
+vim.keymap.set("n", "<Left>", require("smart-splits").resize_left)
+vim.keymap.set("n", "<Right>", require("smart-splits").resize_right)
 map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>|", "<C-W>v", { desc = "Split window right" })
 
