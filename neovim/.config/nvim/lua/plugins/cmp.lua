@@ -11,8 +11,9 @@ return {
     config = function()
         local cmp = require("cmp")
         cmp.setup({
+            preselect = require('cmp').PreselectMode.None,
             completion = {
-                completeopt = "menu,menuone,noinsert",
+                completeopt = "menu,menuone,noinsert,noselect",
             },
             snippet = {
                 expand = function(args)
@@ -26,9 +27,8 @@ return {
                 -- ["<S-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
                 ["<C-n>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-p>"] = cmp.mapping.scroll_docs(4),
-                ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.abort(),
-                ["<C-f>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                ["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 -- ["<S-f>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 ["<C-l>"] = cmp.mapping({
                     i = function(fallback)
@@ -95,6 +95,6 @@ return {
         -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
         require('lspconfig')['rust_analyzer'].setup {
             capabilities = capabilities
-        }
+    }
     end,
 }

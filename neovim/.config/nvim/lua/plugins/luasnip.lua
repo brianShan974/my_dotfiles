@@ -16,7 +16,7 @@ return {
             enable_autosnippets = true,
             store_selection_keys = "`",
         })
-        require("luasnip.loaders.from_lua").load({ paths = "~/.config/fvim/LuaSnip" })
+        require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/LuaSnip" })
     end,
     keys = {
         {
