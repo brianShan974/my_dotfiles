@@ -90,6 +90,7 @@ map("i", ";", ";<c-g>u")
 
 -- save file
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+map({ "i", "v", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save all files" })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
 
 -- better indenting
@@ -115,11 +116,14 @@ map("n", "<leader>uc", function()
 end, { desc = "Toggle Conceal" })
 
 -- Others
-map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
+map("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit all" })
+map("n", "<leader>Q", "<cmd>qa!<cr>", { desc = "Force quit all" })
+map("n", "<c-q>", "<cmd>q<cr>", { desc = "Quit" })
+map("n", "<c-Q>", "<cmd>q!<cr>", { desc = "Force quit" })
 map("n", "<leader>L", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 
 -- Go to home screen, copied from AstroNvim
-vim.keymap.set(
+map(
     "n",
     "<leader>h",
     function()
@@ -128,17 +132,24 @@ vim.keymap.set(
             vim.fn.win_gotoid(wins[2]) -- go to non-neo-tree window to toggle alpha
         end
         require("alpha").start(false, require("alpha").default_config)
-    end
+    end,
+    { desc = "Go to home screen" }
 )
 
 -- Toggle comment, copied from AstroNvim
-vim.keymap.set("n", "<C-/>",
-    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end
+map("n", "<C-/>",
+    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+    { desc = "Toggle comment" }
 )
-vim.keymap.set("v", "<C-/>",
-    "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>"
+map("v", "<C-/>",
+    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+    { desc = "Toggle comment" }
 )
 
 -- Toggle terminal
-vim.keymap.set("n", "<F7>", "<cmd>ToggleTerm direction=float<cr>")
-vim.keymap.set("n", "<F8>", "<cmd>ToggleTerm direction=horizontal<cr>")
+map("n", "<F7>", "<cmd>ToggleTerm direction=float<cr>", { desc = "Toggle floating terminal" })
+map("n", "<F8>", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Toggle horizontal terminal" })
+
+-- Close buffers
+map("n", "<leader>c", "<cmd>:BDelete this<cr>", { desc = "Close current buffer" })
+map("n", "<leader>tc", "<cmd>:BDelete ", { desc = "Close chosen buffer" })
